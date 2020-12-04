@@ -81,13 +81,13 @@ public class compilador  implements Serializable{
         this.model = model;
     }
 
-    public DefaultTableModel getModel_error() {
-        return model_error;
-    }
-
-    public void setModel_error(DefaultTableModel model_error) {
-        this.model_error = model_error;
-    }
+//    public DefaultTableModel getModel_error() {
+//        return model_error;
+//    }
+//
+//    public void setModel_error(DefaultTableModel model_error) {
+//        this.model_error = model_error;
+//    }
     
     
     
