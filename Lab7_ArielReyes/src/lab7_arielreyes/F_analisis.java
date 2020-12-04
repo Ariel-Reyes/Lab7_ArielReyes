@@ -21,7 +21,7 @@ public class F_analisis implements Serializable {
         this.anali_sintactico = anali_sintactico;
         this.anali_sematico = anali_sematico;
     }
-       private static final long SerialVersionUID = 777L;
+       private static final long SerialVersionUID = 733L;
 
     public int getAnali_lexico() {
         return anali_lexico;

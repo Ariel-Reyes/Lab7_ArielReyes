@@ -82,6 +82,11 @@ public class Main extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        ventana_maestro = new javax.swing.JDialog();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        cb_compilador = new javax.swing.JComboBox<>();
+        jLabel31 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -455,6 +460,57 @@ public class Main extends javax.swing.JFrame {
                     .addGap(279, 279, 279)))
         );
 
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
+
+        jLabel31.setText("Compiladores: ");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(187, 187, 187)
+                        .addComponent(jLabel31))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(cb_compilador, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(189, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cb_compilador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(230, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("tab1", jPanel2);
+
+        javax.swing.GroupLayout ventana_maestroLayout = new javax.swing.GroupLayout(ventana_maestro.getContentPane());
+        ventana_maestro.getContentPane().setLayout(ventana_maestroLayout);
+        ventana_maestroLayout.setHorizontalGroup(
+            ventana_maestroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventana_maestroLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+        ventana_maestroLayout.setVerticalGroup(
+            ventana_maestroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventana_maestroLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu3.setText("Menu");
@@ -520,14 +576,19 @@ public class Main extends javax.swing.JFrame {
             usu.add(admi.getLista_usuario().get(i).getUsuario());
             contra.add(admi.getLista_usuario().get(i).getContra());
         }
-        
-        if(usu.contains(jTextField11.getText()) && contra.contains(jTextField12.getText())){
+
+        if (usu.contains(jTextField11.getText()) && contra.contains(jTextField12.getText())) {
             pantalla_alumno();
+        } else if (jTextField11.getText().equals("ca.vallejo") && jTextField12.getText().equals("compi123")) {
+            JOptionPane.showMessageDialog(this, "Bienvenido Ing. Carlos Vallejo");
+            venta_maestro();
+
         } else {
-            JOptionPane.showMessageDialog(this, "No existe este Usuario");
+            JOptionPane.showMessageDialog(this, "Este Ususario no exite");
         }
-        
-        
+
+          //cb_compilador
+       
 
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -544,23 +605,46 @@ public class Main extends javax.swing.JFrame {
            try{ DefaultTableModel model =  (DefaultTableModel)jTable3.getModel()  ;
             DefaultTableModel model_eliminar = (DefaultTableModel) jTable2.getModel();
            
-            
-            F_analisis analis = new F_analisis(Integer.parseInt(jTextField18.getText()), Integer.parseInt(jTextField21.getText()), Integer.parseInt(jTextField22.getText()));
-            F_sintesis sinte = new F_sintesis(Integer.parseInt(jTextField23.getText()), Integer.parseInt(jTextField24.getText()), Integer.parseInt(jTextField25.getText()));
-            compilador compi = new compilador(jTextField19.getText(), jTextField20.getText(), Integer.parseInt(jTextField26.getText()), analis, sinte, model, model_eliminar);
-            admi_compilador admi = new admi_compilador("./compiladores.txt");
-           try{ admi.cargarArchivo();
-            admi.setCompilador(compi);
-            admi.escribirArchivo();} catch(Exception e){}
-            JOptionPane.showMessageDialog(this, "Compiladore creado Correctamente");
-           } catch(Exception e){
-              
-           }
+                            F_analisis analis = new F_analisis(Integer.parseInt(jTextField18.getText()), Integer.parseInt(jTextField21.getText()), Integer.parseInt(jTextField22.getText()));
+                F_sintesis sinte = new F_sintesis(Integer.parseInt(jTextField23.getText()), Integer.parseInt(jTextField24.getText()), Integer.parseInt(jTextField25.getText()));
+                compilador compi = new compilador(jTextField19.getText(), jTextField20.getText(), Integer.parseInt(jTextField26.getText()), analis, sinte);
+                compi.setModel(model);
+             //   compi.setModel_error(model_eliminar);
+                admi_compilador admi = new admi_compilador("./compiladores.txt");
+                try {
+                    admi.cargarArchivo();
+                    admi.setCompilador(compi);
+                    admi.escribirArchivo();
+                } catch (Exception e) {
+                }
+                JOptionPane.showMessageDialog(this, "Compiladore creado Correctamente");
+            } catch (Exception e) {
+                
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "ERROR");
         }
 
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        // TODO add your handling code here:
+        
+//      try{   if (jTabbedPane1.getSelectedIndex() == 0) {
+//            admi_compilador ap = new admi_compilador("./compiladores.txt");
+//            ap.cargarArchivo();
+//            //System.out.println( ap.getLista_pelicula().toArray().length);
+//            DefaultComboBoxModel modelo
+//                    = new DefaultComboBoxModel(
+//                            ap.getLista_compi().toArray());
+//            cb_compilador.setModel(modelo);
+//
+//        }
+//      } catch(Exception e){JOptionPane.showMessageDialog(this, "ERROR");
+//      }
+
+
+    }//GEN-LAST:event_jTabbedPane1StateChanged
 
     /**
      * @param args the command line arguments
@@ -624,12 +708,20 @@ public class Main extends javax.swing.JFrame {
         Crear_compilador.setLocationRelativeTo(this);
         Crear_compilador.setVisible(true);
     }
+       public void venta_maestro() {
+        pantalla_compilador.dispose();
+        ventana_maestro.pack();
+        ventana_maestro.setModal(true);
+        ventana_maestro.setLocationRelativeTo(this);
+        ventana_maestro.setVisible(true);
+    }
      
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Crear_compilador;
     private javax.swing.JDialog Pantalla_alumnos;
     private javax.swing.JDialog Pantalla_usuarios_crear;
+    private javax.swing.JComboBox<String> cb_compilador;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -661,6 +753,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -671,9 +764,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
@@ -703,5 +798,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JDialog pantalla_compilador;
+    private javax.swing.JDialog ventana_maestro;
     // End of variables declaration//GEN-END:variables
 }

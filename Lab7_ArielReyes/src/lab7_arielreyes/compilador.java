@@ -25,14 +25,13 @@ public class compilador  implements Serializable{
   
     private static final long SerialVersionUID = 777L;
 
-    public compilador(String nombre, String nombre_creador, int numero_linea, F_analisis fase_analisis, F_sintesis fase_sintesis, DefaultTableModel model, DefaultTableModel model_error) {
+    public compilador(String nombre, String nombre_creador, int numero_linea, F_analisis fase_analisis, F_sintesis fase_sintesis) {
         this.nombre = nombre;
         this.nombre_creador = nombre_creador;
         this.numero_linea = numero_linea;
         this.fase_analisis = fase_analisis;
         this.fase_sintesis = fase_sintesis;
-        this.model = model;
-        this.model_error = model_error;
+       
     }
 
     
