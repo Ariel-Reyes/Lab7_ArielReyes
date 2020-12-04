@@ -5,31 +5,53 @@
  */
 package lab7_arielreyes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ariel
  */
-public class F_analisis {
-    int num_lineas; 
+public class F_analisis implements Serializable {
+    int anali_lexico; 
+    int anali_sintactico; 
+    int anali_sematico; 
 
-    public F_analisis() {
+    public F_analisis(int anali_lexico, int anali_sintactico, int anali_sematico) {
+        this.anali_lexico = anali_lexico;
+        this.anali_sintactico = anali_sintactico;
+        this.anali_sematico = anali_sematico;
+    }
+       private static final long SerialVersionUID = 777L;
+
+    public int getAnali_lexico() {
+        return anali_lexico;
     }
 
-    public F_analisis(int num_lineas) {
-        this.num_lineas = num_lineas;
+    public void setAnali_lexico(int anali_lexico) {
+        this.anali_lexico = anali_lexico;
     }
 
-    public int getNum_lineas() {
-        return num_lineas;
+    public int getAnali_sintactico() {
+        return anali_sintactico;
     }
 
-    public void setNum_lineas(int num_lineas) {
-        this.num_lineas = num_lineas;
+    public void setAnali_sintactico(int anali_sintactico) {
+        this.anali_sintactico = anali_sintactico;
+    }
+
+    public int getAnali_sematico() {
+        return anali_sematico;
+    }
+
+    public void setAnali_sematico(int anali_sematico) {
+        this.anali_sematico = anali_sematico;
     }
 
     @Override
     public String toString() {
-        return "F_analisis{" + "num_lineas=" + num_lineas + '}';
+        return "F_analisis{" + "anali_lexico=" + anali_lexico + ", anali_sintactico=" + anali_sintactico + ", anali_sematico=" + anali_sematico + '}';
     }
+       
+       
 
 }

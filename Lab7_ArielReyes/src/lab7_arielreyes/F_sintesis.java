@@ -5,31 +5,56 @@
  */
 package lab7_arielreyes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ariel
  */
-public class F_sintesis {
-     int num_lineas;
+public class F_sintesis implements Serializable{
+   int generacion_codigo_inter; 
+   int optimizador_code;
+   int generador_codigo; 
 
-    public F_sintesis() {
+    public F_sintesis(int generacion_codigo_inter, int optimizador_code, int generador_codigo) {
+        this.generacion_codigo_inter = generacion_codigo_inter;
+        this.optimizador_code = optimizador_code;
+        this.generador_codigo = generador_codigo;
+    }
+   
+       private static final long SerialVersionUID = 737L;
+
+    public int getGeneracion_codigo_inter() {
+        return generacion_codigo_inter;
     }
 
-    public F_sintesis(int num_lineas) {
-        this.num_lineas = num_lineas;
+    public void setGeneracion_codigo_inter(int generacion_codigo_inter) {
+        this.generacion_codigo_inter = generacion_codigo_inter;
     }
 
-    public int getNum_lineas() {
-        return num_lineas;
+    public int getOptimizador_code() {
+        return optimizador_code;
     }
 
-    public void setNum_lineas(int num_lineas) {
-        this.num_lineas = num_lineas;
+    public void setOptimizador_code(int optimizador_code) {
+        this.optimizador_code = optimizador_code;
+    }
+
+    public int getGenerador_codigo() {
+        return generador_codigo;
+    }
+
+    public void setGenerador_codigo(int generador_codigo) {
+        this.generador_codigo = generador_codigo;
     }
 
     @Override
     public String toString() {
-        return "F_sintesis{" + "num_lineas=" + num_lineas + '}';
+        return "F_sintesis{" + "generacion_codigo_inter=" + generacion_codigo_inter + ", optimizador_code=" + optimizador_code + ", generador_codigo=" + generador_codigo + '}';
     }
+       
+       
+
+   
      
 }

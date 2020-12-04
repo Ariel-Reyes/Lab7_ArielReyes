@@ -17,20 +17,16 @@ import java.util.ArrayList;
  *
  * @author Ariel
  */
-public class admi_compilador {
+public class admi_usuario {
+    ArrayList<usuario> lista_usuario = new ArrayList(); 
+    File archivo= null; 
 
-    ArrayList<compilador> lista_compi = new ArrayList();
-    File archivo = null;
-
-    public ArrayList<compilador> getLista_compi() {
-        return lista_compi;
+    public ArrayList<usuario> getLista_usuario() {
+        return lista_usuario;
     }
 
-       
-    
-    
-    public void setLista_compi(ArrayList<compilador> lista_compi) {
-        this.lista_compi = lista_compi;
+    public void setLista_usuario(ArrayList<usuario> lista_usuario) {
+        this.lista_usuario = lista_usuario;
     }
 
     public File getArchivo() {
@@ -40,46 +36,48 @@ public class admi_compilador {
     public void setArchivo(File archivo) {
         this.archivo = archivo;
     }
-
-    public admi_compilador(String path) {
+     public admi_usuario(String path) {
         archivo = new File(path);
     }
-
-    public void setCompilador(compilador t) {
-        this.lista_compi.add(t);
+    
+       public void setUsuario(usuario t) {
+        this.lista_usuario.add(t);
     }
-
-    public void cargarArchivo() {
-        try {
-            lista_compi = new ArrayList();
-            compilador temp;
+       
+       
+        public void cargarArchivo() {
+        try {            
+            lista_usuario = new ArrayList();
+            usuario temp;
             if (archivo.exists()) {
                 FileInputStream entrada
-                        = new FileInputStream(archivo);
+                    = new FileInputStream(archivo);
                 ObjectInputStream objeto
-                        = new ObjectInputStream(entrada);
+                    = new ObjectInputStream(entrada);
                 try {
-                    while ((temp = (compilador) objeto.readObject()) != null) {
-                        lista_compi.add(temp);
+                    while ((temp = (usuario) objeto.readObject()) != null) {
+                        lista_usuario.add(temp);
                     }
                 } catch (EOFException e) {
                     //encontro el final del archivo
                 }
                 objeto.close();
                 entrada.close();
-            }
+            }            
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-
-    public void escribirArchivo() {
+        
+        
+        
+        public void escribirArchivo() {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (compilador t : lista_compi) {
+            for (usuario t : lista_usuario) {
                 bw.writeObject(t);
             }
             bw.flush();
@@ -92,5 +90,8 @@ public class admi_compilador {
             }
         }
     }
-
+     
+     
+    
+    
 }
