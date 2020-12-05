@@ -5,9 +5,14 @@
  */
 package lab7_arielreyes;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -88,24 +93,13 @@ public class compilador  implements Serializable{
 //    public void setModel_error(DefaultTableModel model_error) {
 //        this.model_error = model_error;
 //    }
-    
-    
-    
-
     public void setFase_sintesis(F_sintesis fase_sintesis) {
         this.fase_sintesis = fase_sintesis;
     }
 
-  
-
     @Override
     public String toString() {
-        return "compilador{" + "nombre=" + nombre + ", nombre_creador=" + nombre_creador + ", numero_linea=" + numero_linea + ", fase_analisis=" + fase_analisis + ", fase_sintesis=" + fase_sintesis + ", tabla="  + '}';
+        return  nombre ;
     }
 
-
-    
-    
-    
-    
 }
